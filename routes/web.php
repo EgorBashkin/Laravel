@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,19 +18,50 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return ' <a href="/info">Info</a>
-            <a href="/contacts">Contacts</a>
-    <p>Main page</p>';
+/*
+ Меню с категориями
+  */
+
+Route::get('/menu', [\App\Http\Controllers\MenuController::class, 'index'])
+    ->name("news::Menu");
+
+Route::get('/menu/{id}', [\App\Http\Controllers\MenuController::class, 'Category'])
+   ->name("news::cardMenu");
+
+
+/*
+ Новости
+  */
+
+
+Route::get('/menu/1', [\App\Http\Controllers\NewsController::class, 'index'])
+  ->name("news::Catalog");
+
+
+Route::get('/menu/1/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
+    ->name("news::Card");
+
+
+/*
+ *
+ *Админ
+ * */
+
+Route::resource('admin/category', \App\Http\Controllers\Admin\CategoryController::class);
+
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin::news::'
+], function (){
+    route::get('', [AdminNewsController::class, 'index'])
+        ->name("index");
+    route::get('create', [AdminNewsController::class, 'create'])
+        ->name("create");
+    route::get('update', [AdminNewsController::class, 'update'])
+        ->name("update");
+    route::get('delete', [AdminNewsController::class, 'delete'])
+        ->name("delete");
 });
 
-Route::get('/info', function () {
-    return ' <a href="/test">Return</a>
-    <p>info</p>';
-});
 
-Route::get('/contacts', function () {
-    return ' <a href="/test">Return</a>
-    <p>Contacts</p>';
-});
 
