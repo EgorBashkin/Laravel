@@ -19,10 +19,17 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     return ' <a href="/info">Info</a>
-    <p>Page #1</p>';
+            <a href="/contacts">Contacts</a>
+    <p>Main page</p>';
 });
 
 Route::get('/info', function () {
     return ' <a href="/test">Return</a>
-    <p>Page #2</p>';
+    <p>info</p>';
 });
+
+Route::get('/contacts', function () {
+    return ' <a href="/test">Return</a>
+    <p>Contacts</p>';
+});
+
