@@ -26,8 +26,14 @@ Route::get('/menu', [\App\Http\Controllers\MenuController::class, 'index'])
     ->name("news::Menu");
 
 Route::get('/menu/{id}', [\App\Http\Controllers\MenuController::class, 'Category'])
-   ->name("news::cardMenu");
+    ->name("news::category");
 
+
+//Route::get('/menu/1/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
+//    ->name("news::card");
+
+//Route::get('/menu/{category}', [\App\Http\Controllers\MenuController::class, 'Category'])
+   // ->name("news::Category");
 
 /*
  Новости
@@ -37,8 +43,19 @@ Route::get('/menu/{id}', [\App\Http\Controllers\MenuController::class, 'Category
 Route::get('/menu/1', [\App\Http\Controllers\NewsController::class, 'index'])
   ->name("news::Catalog");
 
+Route::get('/menu/2', [\App\Http\Controllers\NewsController::class, 'index'])
+    ->name("news::Catalog");
+
+Route::get('/menu/3', [\App\Http\Controllers\NewsController::class, 'index'])
+    ->name("news::Catalog");
 
 Route::get('/menu/1/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
+    ->name("news::Card");
+
+Route::get('/menu/2/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
+    ->name("news::Card");
+
+Route::get('/menu/3/{id}', [\App\Http\Controllers\NewsController::class, 'card'])
     ->name("news::Card");
 
 

@@ -26,7 +26,7 @@ class NewsController extends BaseController
         $response = '';
         foreach ($this -> news as $id => $item){
 
-            $url = route('news::Card', ['id' => $id]);
+            $url = route('news::Catalog', ['id' => $id]);
             $response .= " <div>
                     <a href ='{$url}'>
                        {$item['title']}
@@ -42,7 +42,7 @@ class NewsController extends BaseController
 
         $news = $this->news[$id];
 
-        return array_values($news) ;
+        return $news['title'] ;
     }
 
 
